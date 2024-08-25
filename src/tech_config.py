@@ -1,4 +1,3 @@
-
 # html page, which cis scrapped and parsed in order to get 'cost of living' indexes
 INDEXES_DATA_SRC_PAGE = "https://www.numbeo.com/cost-of-living/rankings.jsp"
 
