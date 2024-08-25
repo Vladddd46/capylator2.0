@@ -8,11 +8,11 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime, timedelta
 
-
 class ScrapperImpl:
 
     def __init__(self, url):
         self.m_url = url
+        self._cached_indexes_data = None
 
     def __get_html(self):
         response = requests.get(self.m_url)
@@ -110,15 +110,16 @@ class ScrapperImpl:
                 "content": indexes_data,
             }
         except Exception as e:
-            logger.error(f"Exception occured: {e}")
+            logger.error(f"Exception occured ScrapperImpl::113| {e}")
         return formatted_indexes_data_json
 
     def get_indexes_data(self, path_to_cache_file):
         result = None
         try:
-            if is_file_exist(path_to_cache_file) == True:
+            if self._cached_indexes_data != None:
+                result = self._cached_indexes_data
+            elif is_file_exist(path_to_cache_file) == True:
                 result = read_json_file(path_to_cache_file)
-
             # we should do rescrapping if:
             #  * no cached file
             #  * data is older than 30 days.
@@ -129,11 +130,12 @@ class ScrapperImpl:
                 logger.info(
                     f"Scrapping 'cost of living indexes' data | result is None = {result == None}"
                 )
+                self._cached_indexes_data = result
+                if result != None:
+                    save_json_data(
+                        path_to_cache_file, result
+                    )  # save the result for next use
 
-            if result != None:
-                save_json_data(
-                    path_to_cache_file, result
-                )  # save the result for next use
         except Exception as e:
-            logger.error(f"Exception occured: {e}")
+            logger.error(f"Exception occured ScrapperImpl::141| {e}")
         return result
