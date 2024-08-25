@@ -115,7 +115,6 @@ class ScrapperImpl:
 
     def get_indexes_data(self, path_to_cache_file):
         result = None
-
         try:
             if is_file_exist(path_to_cache_file) == True:
                 result = read_json_file(path_to_cache_file)
@@ -127,7 +126,9 @@ class ScrapperImpl:
                 result != None and result["date"] + timedelta(days=30) < datetime.now()
             ):
                 result = self.__rescrap()
-                logger.info(f"Scrapping 'cost of living indexes' data | result is None = {result == None}")
+                logger.info(
+                    f"Scrapping 'cost of living indexes' data | result is None = {result == None}"
+                )
 
             if result != None:
                 save_json_data(
