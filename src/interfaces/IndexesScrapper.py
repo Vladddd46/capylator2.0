@@ -4,7 +4,7 @@
 from src.impl_details.ScrapperImpl import ScrapperImpl
 
 
-class Scrapper:
+class IndexesScrapper:
 
     # url - webpage with 'cost of living' indexes data.
     # path_to_cache_file - cached data stored in order not to always do reparsing.

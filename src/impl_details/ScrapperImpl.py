@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime, timedelta
 
+
 class ScrapperImpl:
 
     def __init__(self, url):
