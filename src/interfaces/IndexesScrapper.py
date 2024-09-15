@@ -1,7 +1,7 @@
 # @date: 25.08.2024
 # @author: vladddd46
 # @brief: interface for getting 'cost of living' indexes
-from src.impl_details.ScrapperImpl import ScrapperImpl
+from src.impl_details.costOfLivingIndexesScrapper.ScrapperImpl import ScrapperImpl
 
 
 class IndexesScrapper:

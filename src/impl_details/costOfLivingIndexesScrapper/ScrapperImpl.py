@@ -13,6 +13,7 @@ from src.entities.LocationCostOfLivingIndexesContainer import (
 from src.entities.LocationCostOfLivingIndexesPair import LocationCostOfLivingIndexesPair
 from src.utilities.adapters import json_to_location, json_to_cost_of_living_indexes
 
+
 class ScrapperImpl:
 
     def __init__(self, url):

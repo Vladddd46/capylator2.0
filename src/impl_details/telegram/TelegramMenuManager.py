@@ -1,7 +1,12 @@
 from telebot import types
 import json
 from src.entities.Language import Language
-from data.buttonsLocalization import CALCULATION_BUTTONS_UKR, CALCULATION_BUTTONS_RUS, CALCULATION_BUTTONS_ENG
+from data.buttonsLocalization import (
+    CALCULATION_BUTTONS_UKR,
+    CALCULATION_BUTTONS_RUS,
+    CALCULATION_BUTTONS_ENG,
+)
+
 
 class TelegramMenuManager:
     @staticmethod

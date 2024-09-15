@@ -33,3 +33,9 @@ class LocationCostOfLivingIndexesContainer:
 
     def size(self):
         return len(self.container)
+
+    def get_cost_of_living_indexes_by_location(self, location):
+        for elem in self.container:
+            if elem.location == location:
+                return elem.const_of_living_indexes
+        return None
