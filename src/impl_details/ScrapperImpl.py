@@ -7,7 +7,11 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime, timedelta
-
+from src.entities.LocationCostOfLivingIndexesContainer import (
+    LocationCostOfLivingIndexesContainer,
+)
+from src.entities.LocationCostOfLivingIndexesPair import LocationCostOfLivingIndexesPair
+from src.utilities.adapters import json_to_location, json_to_cost_of_living_indexes
 
 class ScrapperImpl:
 
@@ -114,6 +118,15 @@ class ScrapperImpl:
             logger.error(f"Exception occured ScrapperImpl::113| {e}")
         return formatted_indexes_data_json
 
+    def __convert_json_into_container(self, json_data):
+        indexesDataContainer = LocationCostOfLivingIndexesContainer()
+        for i in json_data["content"]:
+            location = json_to_location(i["location"])
+            costOfLivingIndexes = json_to_cost_of_living_indexes(i["indexes"])
+            pair = LocationCostOfLivingIndexesPair(location, costOfLivingIndexes)
+            indexesDataContainer.add(pair)
+        return indexesDataContainer
+
     def get_indexes_data(self, path_to_cache_file):
         result = None
         try:
@@ -139,4 +152,5 @@ class ScrapperImpl:
 
         except Exception as e:
             logger.error(f"Exception occured ScrapperImpl::141| {e}")
-        return result
+        result_data = self.__convert_json_into_container(result)
+        return result_data

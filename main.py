@@ -10,15 +10,8 @@ from src.utilities.adapters import json_to_location, json_to_cost_of_living_inde
 
 def get_cost_of_living_indexes():
     scrapper = IndexesScrapper(INDEXES_DATA_SRC_PAGE, CACHED_INDEXES_DATA)
-    data = scrapper.get_indexes_data_in_json()
-
-    indexesDataContainer = LocationCostOfLivingIndexesContainer()
-    for i in data["content"]:
-        location = json_to_location(i["location"])
-        costOfLivingIndexes = json_to_cost_of_living_indexes(i["indexes"])
-        pair = LocationCostOfLivingIndexesPair(location, costOfLivingIndexes)
-        indexesDataContainer.add(pair)
-    return indexesDataContainer
+    data = scrapper.get_indexes_data()
+    return data
 
 
 if __name__ == "__main__":

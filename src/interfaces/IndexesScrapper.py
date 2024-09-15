@@ -12,6 +12,6 @@ class IndexesScrapper:
         self._m_impl = ScrapperImpl(url)
         self._m_path_to_cache_file = path_to_cache_file
 
-    def get_indexes_data_in_json(self):
+    def get_indexes_data(self):
         result = self._m_impl.get_indexes_data(self._m_path_to_cache_file)
         return result

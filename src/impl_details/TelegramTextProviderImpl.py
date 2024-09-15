@@ -6,6 +6,9 @@ from data.texts import (
     INFO_TEXT_ENG,
     INFO_TEXT_UKR,
     INFO_TEXT_RUS,
+    CALCULATION_MENU_TEXT_UKR,
+    CALCULATION_MENU_TEXT_ENG,
+    CALCULATION_MENU_TEXT_RUS
 )
 
 
@@ -30,3 +33,12 @@ class TelegramTextProviderImpl:
         elif language == Language.RUS.value:
             return INFO_TEXT_RUS
         return INFO_TEXT_ENG
+
+    def getCalculationMenuText(self, language):
+        if language == Language.ENG.value:
+            return CALCULATION_MENU_TEXT_ENG
+        elif language == Language.UKR.value:
+            return CALCULATION_MENU_TEXT_UKR
+        elif language == Language.RUS.value:
+            return CALCULATION_MENU_TEXT_RUS
+        return CALCULATION_MENU_TEXT_ENG

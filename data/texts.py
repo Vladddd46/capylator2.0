@@ -69,5 +69,6 @@ INFO_TEXT_RUS = (
 )
 
 
-
-
+CALCULATION_MENU_TEXT_UKR = "Порахувати для:"
+CALCULATION_MENU_TEXT_RUS = "Посчитать для:"
+CALCULATION_MENU_TEXT_ENG = "Calculate for:"

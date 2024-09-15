@@ -41,7 +41,14 @@ class TelegramRequestsHandlerImpl:
             self.telegram_communicator.send_message(user_id, text)
 
     def onCalculateCommand(self, message):
-        pass
+        user_id = message.chat.id
+        user_language = self.telegram_user_database.get_user_language(user_id)
+        if user_language == None:
+            self.__choose_language(user_id)
+        else:
+            menu = TelegramMenuManager.getCalculationMenu(user_language)
+            text = self.telegram_text_provider.getCalculationMenuText(user_language)
+            self.telegram_communicator.send_message(user_id, text, menu)
 
     def onInlineButtonClick(self, call):
         user_id = call.message.chat.id
@@ -58,3 +65,5 @@ class TelegramRequestsHandlerImpl:
                 self.telegram_communicator.send_message(user_id, "✅")
             else:
                 self.__send_welcome_text(user_id)
+        elif tag == "predict":
+            print("predict...")

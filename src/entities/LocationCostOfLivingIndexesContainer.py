@@ -10,7 +10,7 @@ class LocationCostOfLivingIndexesContainer:
 
     def get_unique_countries(self):
         # Use a set to ensure uniqueness of country names
-        countries = {location.country for location in self.container}
+        countries = {pair.location.country for pair in self.container}
         return list(countries)
 
     def get_unique_states_by_country(self, country):
